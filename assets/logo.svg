@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 120 120" role="img" aria-label="Logo THE 20">
+  <circle cx="60" cy="60" r="52" fill="none" stroke="#e6ddc7" stroke-width="10"/>
+  <circle cx="60" cy="60" r="52" fill="none" stroke="#2F4A3D" stroke-width="10"
+          stroke-dasharray="261.5 326.7" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+  <circle cx="60" cy="60" r="52" fill="none" stroke="#C1652F" stroke-width="10"
+          stroke-dasharray="65.3 326.7" stroke-dashoffset="-261.5" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+  <text x="60" y="70" text-anchor="middle" font-family="Space Grotesk, Arial, sans-serif" font-weight="700" font-size="34" fill="#26231F">20</text>
+</svg>
