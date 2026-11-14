@@ -1,6 +1,11 @@
-<!-- Favicon : version carrée simplifiée du logo "jauge Pareto", lisible en petit format -->
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="THE 20">
-  <rect width="64" height="64" rx="12" fill="#2F4A3D"/>
-  <text x="32" y="41" text-anchor="middle" font-family="Space Grotesk, Arial, sans-serif" font-weight="800" font-size="26" fill="#F1EAD9">20</text>
-  <rect x="16" y="47" width="32" height="5" rx="2.5" fill="#C1652F"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-25 -65 250 250" role="img" aria-label="THE 20">
+  <!-- Favicon : carré anthracite + le « 20 » du logo (sans le mot THE, illisible en petit) -->
+  <rect x="-25" y="-65" width="250" height="250" rx="46" fill="#1C1A16"/>
+  <g transform="translate(8.43 0) skewX(-8)">
+    <g fill="none" stroke-width="17" stroke-linejoin="miter" stroke-miterlimit="10">
+      <path d="M17 45.5A27 27 0 1 1 62.79 64.89L25 101.5L79 101.5" stroke="#F1EAD9"/>
+      <path d="M180.77 49.96A41.5 41.5 0 1 1 137.61 18.6" stroke="#F1EAD9"/>
+      <path d="M143.39 18.6A41.5 41.5 0 0 1 178.98 44.45" stroke="#C1652F"/>
+    </g>
+  </g>
 </svg>

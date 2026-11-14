@@ -1,92 +1,121 @@
 # THE 20 — Landing page
 
-Site statique (HTML / CSS / JS vanilla, aucun framework, aucun build) pour la landing page de THE 20, dont l'unique objectif est de générer des réservations d'appel découverte.
+Site statique (HTML / CSS / JavaScript vanilla, aucun framework, aucun build) dont l'unique objectif est de générer des réservations d'appel découverte.
+
+Direction visuelle : grands panneaux arrondis, micro-labels en majuscules et titres révélés mot par mot (esprit éditorial de harbor.ai), appliqués à la charte THE 20.
 
 ## Lancer le site en local
 
-Aucune installation n'est nécessaire.
+Aucune installation nécessaire : double-clique sur `index.html`.
 
-- **Le plus simple** : double-clique sur `index.html`, il s'ouvre dans ton navigateur.
-- **Recommandé** (évite quelques limitations liées à l'ouverture en `file://`) : lance un petit serveur local depuis ce dossier, par exemple avec `npx serve` ou l'extension VS Code "Live Server", puis ouvre l'URL indiquée (ex. `http://localhost:3000`).
+Pour un rendu identique à la mise en ligne, tu peux aussi lancer un petit serveur local depuis ce dossier (extension VS Code « Live Server », ou `npx serve` si Node est installé).
 
 ## Structure des fichiers
 
 ```
-index.html          → toutes les sections de la page, dans l'ordre d'affichage
-css/style.css        → couleurs, polices, mise en page, responsive
-js/script.js          → menu mobile, header sticky, animations, formulaire
-assets/logo.svg        → logo THE 20 (jauge Pareto)
-assets/favicon.svg      → version carrée simplifiée du logo, utilisée comme favicon
+index.html             → toutes les sections de la page, dans l'ordre d'affichage
+css/style.css          → couleurs, polices, mise en page, responsive, animations
+js/script.js           → menu mobile, animations au scroll, formulaire
+assets/logo.svg        → logo THE 20 (version claire, pour fonds sombres)
+assets/logo-clair.svg  → logo THE 20 (version vert forêt, pour fonds clairs)
+assets/favicon.svg     → icône de l'onglet (le « 20 » sur carré anthracite)
 ```
 
-## Où modifier les textes
+## Modifier les textes
 
-Tout le texte est directement dans `index.html`, section par section (chaque section est annoncée par un commentaire `<!-- ... -->`, ex. `<!-- HERO -->`, `<!-- LA MÉTHODE -->`, etc.). Il suffit de chercher le texte à changer et de le remplacer dans la balise correspondante.
+Tout le texte est dans `index.html`. Chaque section est annoncée par un commentaire, par exemple `<!-- HERO -->`, `<!-- LA MÉTHODE -->`, `<!-- CTA FINAL + FORMULAIRE DE CONTACT -->`. Cherche la phrase à changer et remplace-la.
 
-Les zones encore incomplètes sont clairement identifiées :
-- `[À REMPLACER : ...]` dans le texte (ex. section "À propos", témoignages).
-- Les liens `Mentions légales [à compléter]`, `Politique de confidentialité [à compléter]` dans le footer.
-- L'email `contact@the20.fr [à adapter]`.
+Les éléments encore à compléter sont marqués clairement :
 
-## Où modifier les couleurs
+- `[À REMPLACER : ...]` : années d'expérience / certifications, témoignages, photo.
+- `[à compléter]` et `[à adapter]` dans le pied de page : mentions légales, politique de confidentialité, email.
+- Les liens Instagram et TikTok pointent vers `#` : remplace `href="#"` par tes vraies adresses.
 
-Toutes les couleurs de marque sont définies une seule fois, en haut de `css/style.css`, dans le bloc `:root` :
+Deux précautions pour les titres animés (ceux qui portent `data-split`) :
+
+- Écris `20&nbsp;%` (espace insécable) pour que « 20 % » ne soit jamais coupé en fin de ligne.
+- Pour colorer un mot en terracotta, entoure-le de `<span class="accent">...</span>`.
+
+## Modifier les couleurs
+
+Toutes les couleurs sont définies une seule fois, en haut de `css/style.css`, dans le bloc `:root` :
 
 ```css
 :root {
   --vert-foret: #2F4A3D;   /* couleur primaire */
   --terracotta: #C1652F;   /* accent, CTA */
   --anthracite: #26231F;   /* texte / neutre foncé */
-  --sable: #F1EAD9;        /* fond clair / neutre clair */
-  --ocre: #C9A227;         /* support, usage ponctuel */
+  --sable: #F1EAD9;        /* fond clair */
+  --ocre: #C9A227;         /* touches ponctuelles */
 }
 ```
 
-Changer une valeur ici met à jour toute la page automatiquement, puisque le reste du fichier CSS utilise ces variables (`var(--terracotta)`, etc.) plutôt que des couleurs écrites en dur.
+Changer une valeur ici met à jour tout le site. Les logos SVG contiennent leurs propres couleurs : si tu changes la palette, modifie aussi les codes couleur dans `assets/*.svg` et dans les trois logos intégrés à `index.html` (header, footer, grand logo de pied de page).
 
-## Où modifier les polices
+## Modifier les polices
 
-Dans `index.html`, l'appel Google Fonts se trouve dans le `<head>` :
+L'appel Google Fonts est dans le `<head>` de `index.html`. Les noms de polices sont ensuite définis dans `css/style.css` (`--font-titres` pour Space Grotesk, `--font-corps` pour Inter). Si les polices ne chargent pas, le site retombe sur une police système.
 
-```html
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-```
+## Brancher le vrai formulaire de prise de rendez-vous
 
-Les noms de police sont ensuite définis dans `css/style.css` (`--font-titres` pour Space Grotesk, `--font-corps` pour Inter). Si les fonts ne chargent pas (pas de connexion), le site retombe automatiquement sur une police système (`sans-serif`).
+Le formulaire n'a pas de backend pour l'instant : il valide les champs (prénom requis, email au bon format) puis affiche une confirmation simulée. Aucune donnée n'est envoyée.
 
-## Où brancher le vrai formulaire de prise de rendez-vous
-
-Le formulaire de contact (`#contact-form` dans `index.html`) n'a **pas de backend pour l'instant**. Il valide juste les champs (prénom requis, email au bon format) et affiche un message de confirmation simulé.
-
-Pour connecter un vrai service, ouvre `js/script.js` et repère le commentaire :
+Ouvre `js/script.js` et cherche le commentaire :
 
 ```js
-// TODO Maxime : brancher ici Calendly, Formspree ou un webhook pour
-// recevoir réellement les demandes (...)
+// TODO Maxime : brancher ici Calendly, Formspree ou un webhook pour recevoir réellement les demandes
 ```
 
-Options possibles :
-1. **Calendly** : remplacer le formulaire par un widget Calendly embarqué (iframe), ou déclencher l'ouverture d'un popup Calendly au clic sur le bouton.
-2. **Formspree** (ou équivalent : Netlify Forms, Getform...) : envoyer les données du formulaire avec `fetch()` vers l'URL fournie par le service.
-3. **Webhook personnel** : envoyer les données vers ton propre backend / automatisation (Zapier, Make, n8n...).
+Trois options :
 
-## Où remplacer les images
+1. **Formspree** (le plus simple) : crée un formulaire sur formspree.io, puis utilise l'exemple `fetch(...)` déjà écrit en commentaire juste en dessous du TODO, avec ton identifiant.
+2. **Calendly** : remplace le formulaire par le widget Calendly intégré, ou fais pointer les boutons « Réserver mon appel » vers ton lien Calendly.
+3. **Webhook** (Zapier, Make, n8n) : même principe que Formspree, avec l'adresse de ton webhook.
 
-Deux zones sont prévues pour de vraies photos, actuellement affichées comme des placeholders visuels avec un texte explicite :
-- Section Hero : `<!-- Remplacer par une vraie photo de Maxime en séance -->`
-- Section À propos : `<!-- Remplacer par une vraie photo portrait de Maxime -->`
+Une fois le service branché, supprime dans `index.html` la phrase « Ce formulaire est une simulation : aucune donnée n'est encore envoyée. »
 
-Dans chaque cas, remplace le `<div class="img-placeholder">...</div>` par une balise `<img src="assets/ton-image.jpg" alt="description de l'image">`, et dépose le fichier image dans le dossier `assets/`.
+## Remplacer la photo
 
-## Déploiement
+Dans la section `<!-- À PROPOS DU COACH -->`, remplace la ligne
 
-Le site est 100 % statique : il suffit de déposer (glisser-déposer) l'ensemble du dossier sur Netlify, Vercel ou GitHub Pages. Aucune commande de build n'est nécessaire.
+```html
+<span>[À REMPLACER : photo portrait de Maxime]</span>
+```
 
-## Accessibilité et performance — ce qui est déjà en place
+par
 
-- HTML sémantique (`header`, `main`, `section`, `footer`, `nav`).
-- Contrastes de texte vérifiés sur la palette de marque.
-- Focus clavier visible sur tous les éléments interactifs.
-- Menu mobile accessible au clavier (`aria-expanded`, fermeture avec Échap).
-- Animations d'apparition désactivées si l'utilisateur a activé "réduire les animations" (`prefers-reduced-motion`).
-- Aucune dépendance externe autre que Google Fonts (pas de framework CSS/JS). 
+```html
+<img src="assets/maxime.jpg" alt="Maxime, coach sportif THE 20">
+```
+
+et dépose le fichier image dans `assets/`. Format conseillé : portrait 4:5, 900 px de large environ, en `.jpg` ou `.webp`.
+
+## Animations
+
+Chaque animation est une fonction séparée dans `js/script.js`, appelée dans `init()` tout en bas du fichier. Pour en désactiver une, commente sa ligne.
+
+| Animation | Où | Fonction |
+|---|---|---|
+| Logo qui se dessine au chargement | header | CSS (`.logo .draw`) |
+| Titre révélé mot par mot | hero | `initReveal` + `data-split="reveal"` |
+| Jauge 80/20 qui se remplit, compteur | hero | `initCounters` + CSS (`.gauge`) |
+| Texte qui s'allume au scroll | « Le constat » | `initScrollEffects` + `data-split="lit"` |
+| 100 points dont 20 s'allument, courbe, 30 barres, bulles | cartes méthode | `initVisuals` + CSS |
+| Fil de la timeline qui se remplit au scroll | « Comment ça marche » | `initScrollEffects` |
+| Boutons magnétiques, halo sur les cartes | partout (souris uniquement) | `initPointerEffects` |
+| Bandeau défilant | sous le hero | CSS (`.marquee`) |
+
+Si le visiteur a activé « réduire les animations » sur son appareil, tout s'affiche directement dans l'état final, sans mouvement. Sans JavaScript, tout le contenu reste visible.
+
+## Responsive
+
+Mise en page fluide (tailles en `clamp()`), avec quatre paliers dans `css/style.css` :
+
+- moins de 720 px : téléphone, une colonne, menu burger
+- 720 px et plus : tablette, grilles sur 2 à 3 colonnes
+- 960 px et plus : hero sur deux colonnes, cartes méthode en mosaïque
+- 1100 px et plus : navigation complète, timeline horizontale
+
+## Mise en ligne
+
+Le site est 100 % statique : dépose le dossier tel quel sur Netlify, Vercel ou GitHub Pages. Aucune commande de build.

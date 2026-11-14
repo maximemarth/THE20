@@ -2,37 +2,56 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THE 20 — Coaching sportif bien-être & hygiène de vie</title>
-  <meta name="description" content="Coaching sportif hybride (présentiel & distanciel) basé sur la méthode THE 20 : loi de Pareto, effet cumulé, constance et suivi personnalisé. Réserve ton appel découverte gratuit.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>THE 20 — Coaching sportif : fais les 20 % qui comptent</title>
+  <meta name="description" content="Coaching sportif hybride (présentiel & distanciel). THE 20 identifie les 20 % d'actions qui produisent 80 % de tes résultats et t'aide à ne plus jamais les lâcher. Réserve ton appel découverte gratuit.">
+  <meta name="theme-color" content="#1C1A16">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="THE 20 — 20 % d'effort ciblé. 80 % de résultat durable.">
-  <meta property="og:description" content="Un accompagnement sportif sur le moyen et long terme, pensé pour les personnes qui veulent progresser sans perdre de temps.">
+  <meta property="og:title" content="THE 20 — Fais les 20 % qui comptent. Oublie le reste.">
+  <meta property="og:description" content="Coaching sportif hybride sur le moyen et long terme : un cadre clair, un suivi humain, des résultats qui tiennent.">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 
-  <!-- Polices de marque : Space Grotesk (titres) + Inter (corps). Repli système si non chargées. -->
+  <!-- Polices de marque : Space Grotesk (titres) + Inter (corps) — repli sans-serif si non chargées -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
+  <!-- Active les animations "avant apparition" uniquement si JavaScript tourne (sinon tout reste visible) -->
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- Lien d'évitement pour l'accessibilité clavier -->
-  <a class="visually-hidden-focusable" href="#contenu-principal" style="position:absolute; left:-9999px; top:0;">Aller au contenu principal</a>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <div class="progress" aria-hidden="true"><i></i></div>
 
   <!-- ==========================================================================
-       HEADER — sticky, se réduit légèrement au scroll (voir script.js)
+       BANDEAU D'ANNONCE — rappelle l'unique action de la page
+       ========================================================================== -->
+  <div class="announce">
+    <a href="#contact"><span>Appel découverte gratuit de 15 minutes — sans engagement</span> <span aria-hidden="true">→</span></a>
+  </div>
+
+  <!-- ==========================================================================
+       HEADER (sticky) — logo THE 20 qui se dessine au chargement
        ========================================================================== -->
   <header class="header" id="header">
-    <div class="container header-inner">
-      <a href="#" class="brand" aria-label="THE 20, retour en haut de page">
-        <img src="assets/logo.svg" alt="" class="brand-logo" width="40" height="40">
-        THE 20
+    <div class="wrap header-inner">
+      <a href="#top" class="logo" aria-label="THE 20 — retour en haut">
+        <svg viewBox="-124 8 318 104" role="img" aria-label="THE 20">
+          <g transform="translate(8.43 0) skewX(-8)">
+            <path class="fade" fill="currentColor" d="M-99.21 110V80.17H-109.7V74H-81.93V80.17H-92.42V110ZM-75.25 110V74H-68.46V88.86H-55.09V74H-48.3V110H-55.09V95.03H-68.46V110ZM-39.45 110V74H-16.31V80.17H-32.66V88.76H-17.75V94.93H-32.66V103.83H-16V110Z"/>
+            <g fill="none" stroke-width="17" stroke-linejoin="miter" stroke-miterlimit="10">
+              <path class="draw" pathLength="1" stroke="currentColor" d="M17 45.5A27 27 0 1 1 62.79 64.89L25 101.5L79 101.5"/>
+              <path class="draw draw-2" pathLength="1" stroke="currentColor" d="M180.77 49.96A41.5 41.5 0 1 1 137.61 18.6"/>
+              <path class="draw draw-3" pathLength="1" stroke="#C1652F" d="M143.39 18.6A41.5 41.5 0 0 1 178.98 44.45"/>
+            </g>
+          </g>
+        </svg>
       </a>
 
       <nav class="nav-desktop" aria-label="Navigation principale">
@@ -45,114 +64,178 @@
         </ul>
       </nav>
 
-      <a href="#contact" class="btn btn--terracotta header-cta">Réserver mon appel</a>
+      <a href="#contact" class="btn header-cta magnetic">Réserver mon appel</a>
 
-      <!-- Bouton burger : accessible clavier, aria-expanded géré en JS -->
-      <button class="burger" id="burger" aria-expanded="false" aria-controls="nav-mobile" aria-label="Ouvrir le menu">
-        <span class="burger-bar"></span>
-        <span class="burger-bar"></span>
-        <span class="burger-bar"></span>
+      <!-- Burger : accessible au clavier, aria-expanded géré en JS -->
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav-mobile" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
       </button>
     </div>
-
-    <!-- Menu mobile plein écran -->
-    <nav class="nav-mobile" id="nav-mobile" aria-label="Navigation mobile">
-      <ul>
-        <li><a href="#methode">Méthode</a></li>
-        <li><a href="#pour-qui">Pour qui</a></li>
-        <li><a href="#comment-ca-marche">Comment ça marche</a></li>
-        <li><a href="#a-propos">À propos</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <a href="#contact" class="btn btn--terracotta btn--full">Réserver mon appel</a>
-    </nav>
   </header>
 
-  <main id="contenu-principal">
+  <!-- Menu mobile plein écran -->
+  <nav class="nav-mobile" id="nav-mobile" aria-label="Navigation mobile">
+    <ul>
+      <li><a href="#methode" style="--i:0">Méthode</a></li>
+      <li><a href="#pour-qui" style="--i:1">Pour qui</a></li>
+      <li><a href="#comment-ca-marche" style="--i:2">Comment ça marche</a></li>
+      <li><a href="#a-propos" style="--i:3">À propos</a></li>
+      <li><a href="#contact" style="--i:4">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn btn--lg btn--block">Réserver mon appel découverte</a>
+  </nav>
+
+  <main id="contenu">
 
     <!-- ==========================================================================
-         HERO
+         HERO — accroche + baseline + CTA + jauge Pareto animée
          ========================================================================== -->
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-content">
-          <p class="section-kicker">Coaching sportif hybride — présentiel & distanciel</p>
-          <h1>20 % d'effort ciblé. 80 % de résultat durable.</h1>
-          <p class="hero-subtitle">Un accompagnement sportif sur le moyen et long terme, pensé pour les personnes qui veulent progresser sans perdre de temps ni se perdre dans des méthodes qui ne tiennent pas dans une vie chargée.</p>
-          <div class="hero-actions">
-            <a href="#contact" class="btn btn--terracotta btn--large">Réserver mon appel découverte gratuit</a>
-          </div>
-          <p class="hero-microcopy">15 minutes, sans engagement, pour savoir si THE 20 est fait pour toi.</p>
+    <section class="panel panel--dark hero on-dark" id="top" data-hero>
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-rings">
+          <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="none" stroke="#F1EAD9" stroke-width="12" stroke-opacity="0.035"/></svg>
+          <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="58" fill="none" stroke="#F1EAD9" stroke-width="2.2" stroke-opacity="0.18" stroke-dasharray="0.45 5.623"/></svg>
         </div>
-        <div class="hero-media">
-          <!-- Remplacer par une vraie photo de Maxime en séance -->
-          <div class="img-placeholder">[À REMPLACER : photo de Maxime en séance]</div>
+      </div>
+
+      <div class="hero-main">
+        <div class="hero-copy">
+          <p class="label reveal">Coaching sportif hybride — présentiel &amp; distanciel</p>
+          <!-- Titre découpé mot par mot en JS (data-split) pour l'animation d'entrée -->
+          <h1 data-split="reveal">Fais les <span class="accent">20&nbsp;%</span> qui comptent. Oublie le reste.</h1>
+        </div>
+
+        <!-- Jauge Pareto : 80 % de résultat (sable) + 20 % d'effort (terracotta), reprise du concept du logo -->
+        <div class="gauge-wrap" data-gauge>
+          <svg class="gauge" viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="dots-ring" cx="60" cy="60" r="59"/>
+            <circle class="track" cx="60" cy="60" r="52" fill="none" stroke-width="9"/>
+            <circle class="arc arc-80" cx="60" cy="60" r="52"/>
+            <circle class="arc arc-20" cx="60" cy="60" r="52"/>
+          </svg>
+          <div class="gauge-center">
+            <div class="gauge-num"><span data-count="80">80</span><small>%</small></div>
+            <div class="gauge-cap">de résultat durable</div>
+          </div>
+          <span class="chip chip--1" style="--k:0">Entraînement</span>
+          <span class="chip chip--2" style="--k:1">Alimentation</span>
+          <span class="chip chip--3" style="--k:2">Récupération</span>
+        </div>
+      </div>
+
+      <div class="hero-foot" data-foot>
+        <p class="hero-sub">THE 20 isole les rares actions qui produisent <strong>80&nbsp;% de tes résultats</strong>, puis t'aide à ne plus jamais les lâcher. Un cadre clair, un suivi humain, sur la durée.</p>
+        <div class="hero-actions">
+          <div class="row">
+            <a href="#contact" class="btn btn--lg magnetic">Réserver mon appel découverte gratuit <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+          <p class="micro">15 minutes, sans engagement, pour savoir si THE 20 est fait pour toi.</p>
         </div>
       </div>
     </section>
 
+    <!-- Bandeau défilant des 4 fondamentaux et du format -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <ul>
+          <li>Loi de Pareto</li><li>Effet cumulé</li><li>Constance</li><li>Support humain</li><li>Présentiel &amp; distanciel</li><li>Suivi personnalisé</li>
+        </ul>
+        <ul>
+          <li>Loi de Pareto</li><li>Effet cumulé</li><li>Constance</li><li>Support humain</li><li>Présentiel &amp; distanciel</li><li>Suivi personnalisé</li>
+        </ul>
+      </div>
+    </div>
+
     <!-- ==========================================================================
          LE CONSTAT
          ========================================================================== -->
-    <section class="section" id="constat">
-      <div class="container">
-        <div class="section-head reveal">
-          <h2>Tu veux prendre soin de toi. Ce qui te manque, ce n'est pas la motivation du premier jour.</h2>
-          <p class="section-intro">La plupart des gens qui viennent me voir n'ont pas besoin qu'on leur remotive à coup de citations. Ils ont besoin d'un cadre clair, d'un suivi et d'une méthode qui tient dans leur emploi du temps réel.</p>
+    <section class="section constat" id="constat">
+      <div class="wrap">
+        <div class="constat-top">
+          <!-- data-split="lit" : le texte s'allume mot à mot pendant le scroll -->
+          <h2 data-split="lit">Tu veux prendre soin de toi. Ce qui te manque, ce n'est pas la motivation du premier jour.</h2>
+          <p class="intro reveal">La plupart des gens qui viennent me voir n'ont pas besoin qu'on leur remotive à coup de citations. Ils ont besoin d'un cadre clair, d'un suivi et d'une méthode qui tient dans leur emploi du temps réel.</p>
         </div>
 
-        <ul class="check-list reveal">
-          <li class="check-item">
-            <span class="check-icon" aria-hidden="true">&#10003;</span>
-            <p>Tu as déjà essayé seul(e), sans structure claire.</p>
-          </li>
-          <li class="check-item">
-            <span class="check-icon" aria-hidden="true">&#10003;</span>
-            <p>Tu manques de temps pour tout centraliser (entraînement, nutrition, récupération).</p>
-          </li>
-          <li class="check-item">
-            <span class="check-icon" aria-hidden="true">&#10003;</span>
-            <p>Tu veux un cadre et un suivi, pas qu'on te materne.</p>
-          </li>
-          <li class="check-item">
-            <span class="check-icon" aria-hidden="true">&#10003;</span>
-            <p>Tu cherches la régularité, pas la performance extrême ponctuelle.</p>
-          </li>
+        <ul class="pains">
+          <li class="pain spot reveal" style="--d:0s"><span class="pain-num">01</span><p>Tu as déjà essayé seul(e), sans structure claire.</p></li>
+          <li class="pain spot reveal" style="--d:.1s"><span class="pain-num">02</span><p>Tu manques de temps pour tout centraliser (entraînement, nutrition, récupération).</p></li>
+          <li class="pain spot reveal" style="--d:.2s"><span class="pain-num">03</span><p>Tu veux un cadre et un suivi, pas qu'on te materne.</p></li>
+          <li class="pain spot reveal" style="--d:.3s"><span class="pain-num">04</span><p>Tu cherches la régularité, pas la performance extrême ponctuelle.</p></li>
         </ul>
       </div>
     </section>
 
     <!-- ==========================================================================
-         LA MÉTHODE — 4 fondamentaux
+         LA MÉTHODE — 4 fondamentaux, chacun avec son visuel animé
          ========================================================================== -->
-    <section class="section" id="methode" style="background: var(--texte-clair);">
-      <div class="container">
+    <section class="section" id="methode" style="padding-top:0">
+      <div class="wrap">
         <div class="section-head reveal">
-          <p class="section-kicker">La méthode</p>
+          <p class="label">La méthode</p>
           <h2>La méthode THE 20</h2>
-          <p class="section-intro">Quatre principes simples, appliqués avec rigueur, qui font toute la différence sur la durée.</p>
+          <p>Quatre principes simples, appliqués avec rigueur, qui font toute la différence sur la durée.</p>
         </div>
 
-        <div class="method-grid reveal">
-          <article class="method-card">
-            <p class="method-card-index">01</p>
+        <div class="bento">
+          <!-- 1. Pareto -->
+          <article class="card card--dark card--pareto reveal">
+            <p class="card-index">01</p>
             <h3>Loi de Pareto</h3>
             <p>On identifie les 20 % d'actions — entraînement, alimentation, récupération — qui produisent 80 % de tes résultats. Le reste, on l'élague.</p>
+            <div class="card-visual" aria-hidden="true">
+              <div class="dots" data-dots></div>
+              <div class="dots-legend"><span><i class="t"></i>20 actions qui comptent</span><span><i></i>80 actions qu'on élague</span></div>
+            </div>
           </article>
-          <article class="method-card">
-            <p class="method-card-index">02</p>
+
+          <!-- 2. Effet cumulé -->
+          <article class="card card--cumul reveal" style="--d:.1s">
+            <p class="card-index">02</p>
             <h3>Effet cumulé</h3>
             <p>Chaque séance, chaque repas, chaque nuit de sommeil compte. Ce sont les petites actions répétées qui transforment un corps et une hygiène de vie, pas un effort ponctuel intense.</p>
+            <div class="card-visual" aria-hidden="true">
+              <svg class="curve" viewBox="0 0 600 284">
+                <defs>
+                  <linearGradient id="curve-grad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#2F4A3D" stop-opacity="0.28"/>
+                    <stop offset="1" stop-color="#2F4A3D" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <line class="axis" x1="20" y1="270" x2="580" y2="270"/>
+                <path class="area" d="M20 270 C180 268 330 255 430 190 C510 138 550 80 580 28 L580 270 Z"/>
+                <path class="flat" d="M20 270 L580 238"/>
+                <path class="grow" pathLength="1" d="M20 270 C180 268 330 255 430 190 C510 138 550 80 580 28"/>
+                <circle class="end" cx="580" cy="28" r="8"/>
+              </svg>
+              <div class="ticks-legend curve-days"><span>Jour 1</span><span>Jour 365</span></div>
+              <div class="curve-legend"><span class="k">Petites actions répétées</span><span class="k flat-k">Effort ponctuel</span></div>
+            </div>
           </article>
-          <article class="method-card">
-            <p class="method-card-index">03</p>
+
+          <!-- 3. Constance -->
+          <article class="card card--forest card--const reveal">
+            <p class="card-index">03</p>
             <h3>Constance</h3>
             <p>Un programme qui tient dans ta vie réelle, pas l'inverse. L'objectif : que tu puisses le suivre dans 6 mois comme le premier jour.</p>
+            <div class="card-visual" aria-hidden="true">
+              <div class="ticks" data-ticks></div>
+              <div class="ticks-legend"><span>Jour 1</span><span>Jour 30</span></div>
+            </div>
           </article>
-          <article class="method-card">
-            <p class="method-card-index">04</p>
+
+          <!-- 4. Support motivationnel -->
+          <article class="card card--dark card--support reveal" style="--d:.1s">
+            <p class="card-index">04</p>
             <h3>Support motivationnel</h3>
             <p>Un suivi personnalisé et un accompagnement humain pour garder le cap, ajuster ce qui doit l'être, et ne jamais avancer seul(e).</p>
+            <div class="card-visual" aria-hidden="true">
+              <div class="chat">
+                <div class="bubble bubble--in" style="--n:0">Séance faite, 3 sur 3 cette semaine. Un peu fatigué ce soir.</div>
+                <div class="bubble bubble--out" style="--n:1">Bien joué. On garde le cap : on ajuste la récupération dès jeudi.</div>
+                <p class="chat-note">Exemple d'échange — illustration</p>
+              </div>
+            </div>
           </article>
         </div>
       </div>
@@ -161,81 +244,57 @@
     <!-- ==========================================================================
          POUR QUI
          ========================================================================== -->
-    <section class="section" id="pour-qui">
-      <div class="container">
-        <div class="section-head reveal">
+    <section class="section" id="pour-qui" style="padding-top:0">
+      <div class="wrap forwho">
+        <div class="section-head reveal" style="margin-bottom:0">
+          <p class="label">Pour qui</p>
           <h2>THE 20 est fait pour toi si…</h2>
+          <p class="not-for">Ce n'est pas fait pour toi si tu cherches une préparation compétition ou un résultat en 2 semaines.</p>
         </div>
 
-        <ul class="check-list reveal">
-          <li class="check-item">
-            <span class="check-icon" aria-hidden="true">&#10003;</span>
-            <p>Tu as entre 20 et 45 ans et tu veux prendre soin de ton corps sur la durée.</p>
-          </li>
-          <li class="check-item">
-            <span class="check-icon" aria-hidden="true">&#10003;</span>
-            <p>Tu es autonome et capable d'appliquer des directives claires.</p>
-          </li>
-          <li class="check-item">
-            <span class="check-icon" aria-hidden="true">&#10003;</span>
-            <p>Tu veux gagner du temps plutôt que de tout gérer seul(e).</p>
-          </li>
-          <li class="check-item">
-            <span class="check-icon" aria-hidden="true">&#10003;</span>
-            <p>Tu cherches un cadre et un accompagnement, pas juste un programme PDF.</p>
-          </li>
+        <ul class="fit-list">
+          <li class="fit reveal" style="--d:0s"><span class="check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span>Tu as entre 20 et 45 ans et tu veux prendre soin de ton corps sur la durée.</li>
+          <li class="fit reveal" style="--d:.1s"><span class="check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span>Tu es autonome et capable d'appliquer des directives claires.</li>
+          <li class="fit reveal" style="--d:.2s"><span class="check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span>Tu veux gagner du temps plutôt que de tout gérer seul(e).</li>
+          <li class="fit reveal" style="--d:.3s"><span class="check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span>Tu cherches un cadre et un accompagnement, pas juste un programme PDF.</li>
         </ul>
-
-        <p class="for-who-note reveal">Ce n'est pas fait pour toi si tu cherches une préparation compétition ou un résultat en 2 semaines.</p>
       </div>
     </section>
 
     <!-- ==========================================================================
-         COMMENT ÇA MARCHE — timeline 5 étapes
+         COMMENT ÇA MARCHE — timeline dont le fil se remplit au scroll
          ========================================================================== -->
-    <section class="section section--sombre" id="comment-ca-marche">
-      <div class="container">
-        <div class="section-head reveal">
-          <h2>Comment se déroule l'accompagnement</h2>
-        </div>
+    <section class="panel panel--forest on-dark" id="comment-ca-marche">
+      <div class="section">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="label">Le parcours</p>
+            <h2>Comment se déroule l'accompagnement</h2>
+          </div>
 
-        <ol class="timeline reveal">
-          <li class="timeline-step">
-            <span class="timeline-number" aria-hidden="true">1</span>
-            <div>
-              <h3>Appel découverte gratuit</h3>
-              <p>On fait le point sur tes objectifs, ta situation et tes contraintes de temps.</p>
-            </div>
-          </li>
-          <li class="timeline-step">
-            <span class="timeline-number" aria-hidden="true">2</span>
-            <div>
-              <h3>Bilan personnalisé</h3>
-              <p>Analyse de ton mode de vie, ton niveau, tes disponibilités et tes priorités — la loi de Pareto appliquée à ta situation.</p>
-            </div>
-          </li>
-          <li class="timeline-step">
-            <span class="timeline-number" aria-hidden="true">3</span>
-            <div>
-              <h3>Programme sur mesure</h3>
-              <p>Entraînement et hygiène de vie adaptés, en présentiel et/ou à distance selon tes besoins.</p>
-            </div>
-          </li>
-          <li class="timeline-step">
-            <span class="timeline-number" aria-hidden="true">4</span>
-            <div>
-              <h3>Suivi et ajustements réguliers</h3>
-              <p>Points de suivi, ajustements du programme, support motivationnel continu.</p>
-            </div>
-          </li>
-          <li class="timeline-step">
-            <span class="timeline-number" aria-hidden="true">5</span>
-            <div>
-              <h3>Résultats qui tiennent dans le temps</h3>
-              <p>L'objectif n'est pas un résultat ponctuel, mais un changement durable.</p>
-            </div>
-          </li>
-        </ol>
+          <ol class="timeline" data-timeline>
+            <li class="step">
+              <span class="step-num" aria-hidden="true">1</span>
+              <div class="step-body"><h3>Appel découverte gratuit</h3><p>On fait le point sur tes objectifs, ta situation et tes contraintes de temps.</p></div>
+            </li>
+            <li class="step">
+              <span class="step-num" aria-hidden="true">2</span>
+              <div class="step-body"><h3>Bilan personnalisé</h3><p>Analyse de ton mode de vie, ton niveau, tes disponibilités et tes priorités — la loi de Pareto appliquée à ta situation.</p></div>
+            </li>
+            <li class="step">
+              <span class="step-num" aria-hidden="true">3</span>
+              <div class="step-body"><h3>Programme sur mesure</h3><p>Entraînement et hygiène de vie adaptés, en présentiel et/ou à distance selon tes besoins.</p></div>
+            </li>
+            <li class="step">
+              <span class="step-num" aria-hidden="true">4</span>
+              <div class="step-body"><h3>Suivi et ajustements réguliers</h3><p>Points de suivi, ajustements du programme, support motivationnel continu.</p></div>
+            </li>
+            <li class="step">
+              <span class="step-num" aria-hidden="true">5</span>
+              <div class="step-body"><h3>Résultats qui tiennent dans le temps</h3><p>L'objectif n'est pas un résultat ponctuel, mais un changement durable.</p></div>
+            </li>
+          </ol>
+        </div>
       </div>
     </section>
 
@@ -243,135 +302,159 @@
          À PROPOS DU COACH
          ========================================================================== -->
     <section class="section" id="a-propos">
-      <div class="container about-inner">
-        <div class="about-media">
-          <!-- Remplacer par une vraie photo portrait de Maxime -->
-          <div class="img-placeholder">[À REMPLACER : photo portrait de Maxime]</div>
+      <div class="wrap about">
+        <div class="photo reveal">
+          <!-- Remplacer par une vraie photo portrait de Maxime : <img src="assets/maxime.jpg" alt="Maxime, coach sportif THE 20"> -->
+          <span>[À REMPLACER : photo portrait de Maxime]</span>
         </div>
-        <div class="about-text reveal">
-          <p class="section-kicker">Ton coach</p>
-          <h2>Maxime, coach THE 20</h2>
-          <p>Je m'appelle Maxime, coach sportif indépendant. <span class="placeholder-flag">[À REMPLACER : X années d'expérience / certifications]</span> au contact du fitness, j'accompagne des clients qui veulent progresser durablement sans perdre de temps. Ma conviction : la meilleure méthode est celle qu'on arrive à tenir dans la durée.</p>
+        <div class="reveal" style="--d:.1s">
+          <p class="label">À propos</p>
+          <h2>Ton coach</h2>
+          <p>Je m'appelle Maxime, coach sportif indépendant. <span class="todo">[À REMPLACER : X années d'expérience / certifications]</span> au contact du fitness, j'accompagne des clients qui veulent progresser durablement sans perdre de temps. Ma conviction : la meilleure méthode est celle qu'on arrive à tenir dans la durée.</p>
         </div>
       </div>
     </section>
 
     <!-- ==========================================================================
-         TÉMOIGNAGES (placeholders explicites — à remplacer par de vrais avis)
+         TÉMOIGNAGES — placeholders explicites, à remplacer par de vrais retours
          ========================================================================== -->
-    <section class="section" id="temoignages" style="background: var(--texte-clair);">
-      <div class="container">
+    <section class="section" id="temoignages" style="padding-top:0">
+      <div class="wrap">
         <div class="section-head reveal">
+          <p class="label">Résultats</p>
           <h2>Ils ont commencé avec THE 20</h2>
         </div>
-
-        <div class="testimonial-grid reveal">
-          <article class="testimonial-card">
-            <p>[À REMPLACER : témoignage client]</p>
-            <p class="testimonial-author">— [Nom, prénom ou initiales]</p>
-          </article>
-          <article class="testimonial-card">
-            <p>[À REMPLACER : témoignage client]</p>
-            <p class="testimonial-author">— [Nom, prénom ou initiales]</p>
-          </article>
-          <article class="testimonial-card">
-            <p>[À REMPLACER : témoignage client]</p>
-            <p class="testimonial-author">— [Nom, prénom ou initiales]</p>
-          </article>
+        <div class="quotes">
+          <figure class="quote reveal" style="--d:0s"><span class="mark" aria-hidden="true">“</span><blockquote><p>[À REMPLACER : témoignage client]</p></blockquote><cite>— [Nom, prénom ou initiales]</cite></figure>
+          <figure class="quote reveal" style="--d:.1s"><span class="mark" aria-hidden="true">“</span><blockquote><p>[À REMPLACER : témoignage client]</p></blockquote><cite>— [Nom, prénom ou initiales]</cite></figure>
+          <figure class="quote reveal" style="--d:.2s"><span class="mark" aria-hidden="true">“</span><blockquote><p>[À REMPLACER : témoignage client]</p></blockquote><cite>— [Nom, prénom ou initiales]</cite></figure>
         </div>
       </div>
     </section>
 
     <!-- ==========================================================================
-         CTA FINALE + FORMULAIRE DE CONTACT
+         CTA FINAL + FORMULAIRE DE CONTACT
          ========================================================================== -->
-    <section class="section cta-final" id="contact">
-      <div class="container">
-        <div class="section-head reveal">
-          <h2>Prêt(e) à passer à l'étape suivante ?</h2>
-          <p class="section-intro">Réserve ton appel découverte gratuit de 15 minutes. On regarde ensemble où tu en es et si THE 20 peut t'aider à atteindre tes objectifs.</p>
+    <section class="panel panel--dark cta on-dark" id="contact">
+      <div class="cta-bg" aria-hidden="true">
+        <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="none" stroke="#F1EAD9" stroke-width="12" stroke-opacity="0.04"/><circle cx="60" cy="60" r="58" fill="none" stroke="#F1EAD9" stroke-width="2.2" stroke-opacity="0.2" stroke-dasharray="0.45 5.623"/></svg>
+      </div>
+
+      <div class="cta-grid">
+        <div class="cta-copy">
+          <p class="label reveal">Appel découverte</p>
+          <h2 class="reveal" style="--d:.05s">Prêt(e) à passer à l'<span class="accent">étape suivante</span>&nbsp;?</h2>
+          <p class="reveal" style="--d:.1s">Réserve ton appel découverte gratuit de 15 minutes. On regarde ensemble où tu en es et si THE 20 peut t'aider à atteindre tes objectifs.</p>
+          <ul class="assure reveal" style="--d:.15s">
+            <li>15 minutes, gratuit</li>
+            <li>Sans engagement</li>
+            <li>Je te recontacte sous 24 h</li>
+          </ul>
         </div>
 
-        <form class="contact-form reveal" id="contact-form" novalidate>
-          <div class="form-row">
-            <label for="prenom">Prénom <span class="required-mark">*</span></label>
-            <input type="text" id="prenom" name="prenom" required autocomplete="given-name">
-            <p class="form-error">Merci d'indiquer ton prénom.</p>
+        <div class="form-card reveal" style="--d:.15s">
+          <form id="contact-form" novalidate>
+            <div class="form-grid">
+              <div class="field" data-field>
+                <label for="prenom">Prénom <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="prenom" name="prenom" required autocomplete="given-name" aria-describedby="err-prenom">
+                <p class="error" id="err-prenom">Merci d'indiquer ton prénom.</p>
+              </div>
+              <div class="field" data-field>
+                <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+                <input type="email" id="email" name="email" required autocomplete="email" inputmode="email" aria-describedby="err-email">
+                <p class="error" id="err-email">Merci d'indiquer une adresse email valide.</p>
+              </div>
+              <div class="two">
+                <div class="field">
+                  <label for="telephone">Téléphone <span style="font-weight:400;color:var(--gris-chaud)">(optionnel)</span></label>
+                  <input type="tel" id="telephone" name="telephone" autocomplete="tel" inputmode="tel">
+                </div>
+                <div class="field">
+                  <label for="objectif">Objectif principal</label>
+                  <select id="objectif" name="objectif">
+                    <option>Perte de poids</option>
+                    <option>Prise de masse</option>
+                    <option>Remise en forme générale</option>
+                    <option>Autre</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label for="message">Message <span style="font-weight:400;color:var(--gris-chaud)">(optionnel)</span></label>
+                <textarea id="message" name="message" rows="4"></textarea>
+              </div>
+              <button type="submit" class="btn btn--lg btn--block magnetic">Réserver mon appel découverte <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            </div>
+            <p class="form-note">Ce formulaire est une simulation : aucune donnée n'est encore envoyée.</p>
+          </form>
+
+          <!-- Message de confirmation affiché après un envoi simulé réussi (voir js/script.js) -->
+          <div class="confirmation" id="form-confirmation" role="status" aria-live="polite" tabindex="-1">
+            <svg class="ok" viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="38" pathLength="1"/><path d="M26 43l11 11 21-24" pathLength="1"/></svg>
+            <p>Merci ! Ta demande a bien été reçue. Je te recontacte sous 24h.</p>
           </div>
-
-          <div class="form-row">
-            <label for="email">Email <span class="required-mark">*</span></label>
-            <input type="email" id="email" name="email" required autocomplete="email">
-            <p class="form-error">Merci d'indiquer une adresse email valide.</p>
-          </div>
-
-          <div class="form-row">
-            <label for="telephone">Téléphone</label>
-            <input type="tel" id="telephone" name="telephone" autocomplete="tel">
-          </div>
-
-          <div class="form-row">
-            <label for="objectif">Objectif principal</label>
-            <select id="objectif" name="objectif">
-              <option value="Perte de poids">Perte de poids</option>
-              <option value="Prise de masse">Prise de masse</option>
-              <option value="Remise en forme générale">Remise en forme générale</option>
-              <option value="Autre">Autre</option>
-            </select>
-          </div>
-
-          <div class="form-row">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="4"></textarea>
-          </div>
-
-          <button type="submit" class="btn btn--terracotta btn--full btn--large">Réserver mon appel découverte</button>
-
-          <p class="form-note">Aucune donnée n'est envoyée pour le moment : ce formulaire est une simulation en attendant le branchement d'un vrai service de prise de rendez-vous.</p>
-
-          <!-- Message de confirmation affiché après un envoi simulé réussi (voir script.js) -->
-          <div class="form-confirmation" id="form-confirmation" role="status" aria-live="polite">
-            Merci ! Ta demande a bien été reçue. Je te recontacte sous 24h.
-          </div>
-        </form>
+        </div>
       </div>
     </section>
-
   </main>
 
   <!-- ==========================================================================
        FOOTER
        ========================================================================== -->
   <footer class="footer">
-    <div class="container footer-inner">
-      <div>
-        <a href="#" class="footer-brand">
-          <img src="assets/logo.svg" alt="" class="footer-brand-logo" width="32" height="32">
-          THE 20
-        </a>
-        <p class="footer-signature">L'essentiel. Chaque jour.</p>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a href="#top" class="logo" aria-label="THE 20 — retour en haut">
+            <svg viewBox="-124 8 318 104" role="img" aria-label="THE 20" style="height:42px">
+              <g transform="translate(8.43 0) skewX(-8)">
+                <path fill="currentColor" d="M-99.21 110V80.17H-109.7V74H-81.93V80.17H-92.42V110ZM-75.25 110V74H-68.46V88.86H-55.09V74H-48.3V110H-55.09V95.03H-68.46V110ZM-39.45 110V74H-16.31V80.17H-32.66V88.76H-17.75V94.93H-32.66V103.83H-16V110Z"/>
+                <g fill="none" stroke-width="17" stroke-linejoin="miter" stroke-miterlimit="10">
+                  <path stroke="currentColor" d="M17 45.5A27 27 0 1 1 62.79 64.89L25 101.5L79 101.5"/>
+                  <path stroke="currentColor" d="M180.77 49.96A41.5 41.5 0 1 1 137.61 18.6"/>
+                  <path stroke="#C1652F" d="M143.39 18.6A41.5 41.5 0 0 1 178.98 44.45"/>
+                </g>
+              </g>
+            </svg>
+          </a>
+          <p class="sign">L'essentiel. Chaque jour.</p>
+        </div>
 
-        <div class="footer-social" style="margin-top:18px;">
-          <a href="#" aria-label="THE 20 sur Instagram">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-          </a>
-          <a href="#" aria-label="THE 20 sur TikTok">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 8v8a3 3 0 1 1-3-3"/><path d="M15 3v10.5"/><path d="M15 3c0 3 2.5 5 5 5"/></svg>
-          </a>
+        <div class="footer-col">
+          <h4>Infos</h4>
+          <a href="#">Mentions légales [à compléter]</a>
+          <a href="#">Politique de confidentialité [à compléter]</a>
+          <a href="mailto:contact@the20.fr">contact@the20.fr [à adapter]</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Réseaux</h4>
+          <div class="social">
+            <a href="#" aria-label="THE 20 sur Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+            <a href="#" aria-label="THE 20 sur TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 8v8a3 3 0 1 1-3-3"/><path d="M15 3v10.5"/><path d="M15 3c0 3 2.5 5 5 5"/></svg></a>
+          </div>
         </div>
       </div>
 
-      <div>
-        <ul class="footer-links">
-          <li><a href="#">Mentions légales [à compléter]</a></li>
-          <li><a href="#">Politique de confidentialité [à compléter]</a></li>
-          <li><a href="mailto:contact@the20.fr">contact@the20.fr [à adapter]</a></li>
-        </ul>
+      <div class="footer-legal">
+        <p>© 2026 THE 20 — Tous droits réservés.</p>
+        <a href="#contact">Réserver mon appel découverte</a>
       </div>
     </div>
 
-    <div class="container footer-bottom">
-      <p>&copy; 2026 THE 20 — Tous droits réservés.</p>
+    <!-- Grand logo décoratif en pied de page -->
+    <div class="big-logo" aria-hidden="true">
+      <svg viewBox="-124 8 318 104">
+        <g transform="translate(8.43 0) skewX(-8)">
+          <path fill="currentColor" d="M-99.21 110V80.17H-109.7V74H-81.93V80.17H-92.42V110ZM-75.25 110V74H-68.46V88.86H-55.09V74H-48.3V110H-55.09V95.03H-68.46V110ZM-39.45 110V74H-16.31V80.17H-32.66V88.76H-17.75V94.93H-32.66V103.83H-16V110Z"/>
+          <g fill="none" stroke-width="17" stroke-linejoin="miter" stroke-miterlimit="10">
+            <path stroke="currentColor" d="M17 45.5A27 27 0 1 1 62.79 64.89L25 101.5L79 101.5"/>
+            <path stroke="currentColor" d="M180.77 49.96A41.5 41.5 0 1 1 137.61 18.6"/>
+            <path stroke="currentColor" d="M143.39 18.6A41.5 41.5 0 0 1 178.98 44.45"/>
+          </g>
+        </g>
+      </svg>
     </div>
   </footer>
 
